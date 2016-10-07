@@ -8,7 +8,7 @@ using namespace std;
 class listaDeParadas
 {
 	private:	
-		Parada* locais[5765];
+		Parada* locais;
 	public:
 		listaDeParadas(); //Construtor
 		void exibe_locais(); //Exibe a lista de paradas		

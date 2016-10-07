@@ -13,16 +13,18 @@ class Parada
 		float latitude;
 		float longitude;
 		Veiculo* listaVeiculosQuePassamPorAqui[100];
-		//Parada* prox;  // Este atributo deve ser usado somente se for implementada uma lista ENCADEADA de paradas
+		Parada* prox;  // Este atributo deve ser usado somente se for implementada uma lista ENCADEADA de paradas
 	public:
 		Parada();		
 		int get_ID();
 		float get_latitude();
 		float get_longitude();
+		Parada* get_prox();
 		void exibir_listaVeiculosQuePassamPorAqui();
 		void set_ID(int _ID);
 		void set_latitude(float _latitude);
 		void set_longitude(float _longitude);
+		void set_prox(*Parada p);
 		void RegistraVeiculoNaParada(Veiculo *v);
 };
 #endif

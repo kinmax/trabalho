@@ -14,6 +14,7 @@ Parada::Parada()
 	{
 		listaVeiculosQuePassamPorAqui[i] = NULL;
 	}
+	prox = NULL;
 }
 
 int Parada::get_ID()
@@ -31,6 +32,11 @@ float Parada::get_longitude()
 	return longitude;
 }
 
+Parada* Parada::get_prox()
+{
+	return prox;
+}
+
 void Parada::exibir_listaVeiculosQuePassamPorAqui()
 {
 	int i = 0;
@@ -38,7 +44,7 @@ void Parada::exibir_listaVeiculosQuePassamPorAqui()
 	{
 		cout << "Linha: " << listaVeiculosQuePassamPorAqui[i]->get_linha() << endl;
 		cout << "Nome: " << listaVeiculosQuePassamPorAqui[i]->get_nome() << endl;
-		cout << " " << endl;
+		cout << endl;
 		i++;
 	}
 }
@@ -56,6 +62,11 @@ void Parada::set_latitude(float _latitude)
 void Parada::set_longitude(float _longitude)
 {
 	longitude = _longitude;
+}
+
+void Parada::set_prox(Parada* p)
+{
+	prox = p;
 }
 
 void Parada::RegistraVeiculoNaParada(Veiculo *v)

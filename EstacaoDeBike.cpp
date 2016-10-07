@@ -6,6 +6,7 @@ EstacaoDeBike::EstacaoDeBike()
 	nome = "NULL";
 	latitude = 0;
 	longitude = 0;
+	prox = NULL;
 }
 
 int EstacaoDeBike::get_ID()
@@ -28,6 +29,11 @@ float EstacaoDeBike::get_longitude()
 	return longitude;
 }
 
+EstacaoDeBike* EstacaoDeBike::get_prox()
+{
+	return prox;
+}
+
 void EstacaoDeBike::set_ID(int _ID)
 {
 	ID = _ID;
@@ -46,4 +52,9 @@ void EstacaoDeBike::set_latitude(float _latitude)
 void EstacaoDeBike::set_longitude(float _longitude)
 {
 	longitude = _longitude;
+}
+
+void EstacaoDeBike::set_prox(EstacaoDeBike* e)
+{
+	prox = e;
 }

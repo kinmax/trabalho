@@ -15,6 +15,7 @@ Veiculo::Veiculo()
 	{
 		listaParadasPorOndePassa[i] = NULL;
 	}
+	prox = NULL;
 }
 
 int Veiculo::get_ID()
@@ -37,6 +38,11 @@ char Veiculo::get_tipo()
 	return tipo;
 }
 
+Veiculo* Veiculo::get_prox()
+{
+	return prox;
+}
+
 void Veiculo::set_ID(int _ID)
 {
 	ID = _ID;
@@ -55,6 +61,11 @@ void Veiculo::set_nome(string _nome)
 void Veiculo::set_tipo(char _tipo)
 {
 	tipo = _tipo;
+}
+
+void Veiculo::set_prox(Veiculo* v)
+{
+	prox = v;
 }
 
 void Veiculo::exibir_listaParadasPorOndePassa()

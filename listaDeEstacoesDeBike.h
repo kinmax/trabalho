@@ -8,7 +8,7 @@ using namespace std;
 class listaDeEstacoesDeBike
 {
 	private:	
-		EstacaoDeBike* locais[37];
+		EstacaoDeBike* locais;
 	public:
 		listaDeEstacoesDeBike(); //Construtor		
 		void InsereEstacao(EstacaoDeBike V); //Adiciona uma estação de bicicleta do BikePOA ao vetor de estações

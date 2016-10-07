@@ -11,16 +11,18 @@ class EstacaoDeBike
 		string nome;
 		float latitude;
 		float longitude;
-		//EstacaoDeBike* prox; // Este atributo deve ser usado somente se for implementada uma lista ENCADEADA de estações
+		EstacaoDeBike* prox; // Este atributo deve ser usado somente se for implementada uma lista ENCADEADA de estações
 	public:
 		EstacaoDeBike();
 		int get_ID();
 		string get_nome();
 		float get_latitude();
 		float get_longitude();
+		EstacaoDeBike* get_prox();
 		void set_ID(int _ID);
 		void set_nome(string _nome);
 		void set_latitude(float _latitude);
 		void set_longitude(float _longitude);
+		void set_prox(EstacaoDeBike* e);
 };
 #endif

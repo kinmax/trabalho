@@ -14,7 +14,7 @@ class Veiculo
 		string nome; //Ex.: TRANSVERSAL 1
 		char tipo; //L = Lotação	O = Ônibus
 		Parada* listaParadasPorOndePassa[100]; //Lista de paradas por onde a linha passa, na ordem em que a linha passa
-		//Veiculo* prox; // Este atributo deve ser usado somente se for implementada uma lista ENCADEADA de veículos
+		Veiculo* prox; // Este atributo deve ser usado somente se for implementada uma lista ENCADEADA de veículos
 		//Parada *listaParadas; // Este atributo deve ser usado somente se for implementada uma lista ENCADEADA de Paradas
 	public:
 		Veiculo();
@@ -22,10 +22,12 @@ class Veiculo
 		string get_linha();
 		string get_nome();
 		char get_tipo();
+		Veiculo* get_prox();
 		void set_ID(int _ID);
 		void set_linha(string _linha);
 		void set_nome(string _nome);
 		void set_tipo(char _tipo);
+		void set_prox(Veiculo* v);
 		void exibir_listaParadasPorOndePassa();
 		void RegistraParadaNoVeiculo(Parada *p);
 };

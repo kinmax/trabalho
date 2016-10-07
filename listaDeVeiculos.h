@@ -2,13 +2,15 @@
 #define _lista_de_veiculos_h_
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <fstream>
 #include "Veiculo.h"
 using namespace std;
 
 class listaDeVeiculos
 {
 	private:	
-		Veiculo* transporte[1008];
+		Veiculo* transporte;
 	public:
 		listaDeVeiculos(); //Construtor		
 		void carregaVeiculos(const char *_fileName); //Usa o arquivo para armazenar os veículos em um vetor
