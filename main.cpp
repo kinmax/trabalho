@@ -4,6 +4,8 @@
 #include "listaDeVeiculos.h"
 #include "listaDeParadas.h"
 #include "listaDeEstacoesDeBike.h"
+#include <iostream>
+#include <string>
 #include <sstream>
 #include <fstream>
 using namespace std;

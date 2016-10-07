@@ -3,6 +3,8 @@ class Veiculo; //Definição prévia para que o compilador possa identificar Vei
 #define _parada_h_
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <sstream>
 #include "Veiculo.h"
 using namespace std;
 
@@ -24,7 +26,7 @@ class Parada
 		void set_ID(int _ID);
 		void set_latitude(float _latitude);
 		void set_longitude(float _longitude);
-		void set_prox(*Parada p);
+		void set_prox(Parada *p);
 		void RegistraVeiculoNaParada(Veiculo *v);
 };
 #endif

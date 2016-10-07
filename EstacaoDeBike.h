@@ -2,6 +2,8 @@
 #define _estacao_de_bike_h_
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 class EstacaoDeBike

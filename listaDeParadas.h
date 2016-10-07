@@ -2,6 +2,8 @@
 #define _lista_de_paradas_h_
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <sstream>
 #include "Parada.h"
 using namespace std;
 
