@@ -16,5 +16,6 @@ class listaDeVeiculos
 		void carregaVeiculos(const char *_fileName); //Usa o arquivo para armazenar os veículos em um vetor
 		void ListaLinhasDeOnibus(); //Exibe o vetor de veículos
 		void ListaParadasDaLinha(string _linha); //Exibe as paradas de uma linha específica, na ordem em que o veículo passa por elas
+		Veiculo* get_transporte();
 };
 #endif

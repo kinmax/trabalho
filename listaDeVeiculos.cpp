@@ -10,19 +10,20 @@ void listaDeVeiculos::carregaVeiculos(const char *_fileName)
 	Veiculo *aux, *no;	
 	ifstream linhafile;
 	linhafile.open(_fileName, ios::in);
-	string line, ident, linha, nome, type;
-	stringstream x;
+	string line, ident, linha, nome, type, idlinha, idparada;
+	stringstream x, y, z, w;
 	char tipo;
-	int id, pos;
+	int id, pos, idl, idp;
 	if (!linhafile.is_open())
 	{
-		cout << "O arquivo de linhas não pôde ser aberto" << endl;
+		cout << "O arquivo linhas.csv não pôde ser aberto" << endl;
 	}
 	else
 	{
-		getline(linhafile, line);
+		getline(linhafile, line); //Pular a primeira linha (cabeçalho)
 		while(!linhafile.eof())
 		{
+			/*Leitura do arquivo linhas.csv e atribuição das variáveis*/
 			getline(linhafile, line);
 			pos = line.find(";");
 			ident = line.substr(0, pos);
@@ -35,12 +36,13 @@ void listaDeVeiculos::carregaVeiculos(const char *_fileName)
 			pos = line.find(";");
 			linha = line.substr(0, pos);
 			line.erase(0, pos+1);
-			pos = line.find(";");
+			pos = line.find("\n");
 			type = line.substr(0, pos);
-			x << type;
-			x >> tipo;
+			y << type;
+			y >> tipo;
 			line.erase(0, pos+1);
 
+			/*Criação do veículo, definição dos atributos e inserção na lista*/			
 			if (transporte == NULL)
 			{
 				transporte = new Veiculo();
@@ -57,9 +59,9 @@ void listaDeVeiculos::carregaVeiculos(const char *_fileName)
 				aux->set_linha(linha);
 				aux->set_tipo(tipo);
 				no = transporte;
-				while(no != NULL)
+				while(no->get_prox() != NULL)
 				{
-					no = no->get_prox()
+					no = no->get_prox();
 				}
 				no->set_prox(aux);
 				
@@ -67,14 +69,13 @@ void listaDeVeiculos::carregaVeiculos(const char *_fileName)
 			
 		}
 	}
-	delete(no);
-	delete(aux);	
+		
 }
 
 void listaDeVeiculos::ListaLinhasDeOnibus()
 {
 	Veiculo *aux;
-	aux = new Veiculo()
+	aux = new Veiculo();
 	aux = transporte;
 	while(aux != NULL)
 	{
@@ -83,14 +84,14 @@ void listaDeVeiculos::ListaLinhasDeOnibus()
 		cout << "Nome da Linha: " << aux->get_nome() << endl;
 		if(aux->get_tipo() == 'O')
 		{
-			cout << "Tipo: Ônibus" << endl;
+			cout << "Tipo de Veículo: Ônibus" << endl;
 		}
 		else
 		{
-			cout << "Tipo: Lotação" << endl;
+			cout << "Tipo de Veículo: Lotação" << endl;
 		}
+		cout << "========================================================" << endl;
 	}
-	delete(aux);
 	
 }
 
@@ -108,4 +109,9 @@ void listaDeVeiculos::ListaParadasDaLinha(string _linha)
 	{
 		cout << transporte->listaParadasPorOndePassa[i]->get_ID() << endl; 
 	}	
+}
+
+Veiculo* listaDeVeiculos::get_transporte()
+{
+	return transporte;
 }

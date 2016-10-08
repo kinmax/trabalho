@@ -7,6 +7,7 @@ using namespace std;
 Parada::Parada()
 {
 	int i;
+	nv = 0;
 	ID = 0;
 	latitude = 0;
 	longitude = 0;
@@ -22,6 +23,16 @@ int Parada::get_ID()
 	return ID;
 }
 
+int Parada::get_codigo()
+{
+	return codigo;
+}
+
+int Parada::get_nv()
+{
+	return nv;
+}
+
 float Parada::get_latitude()
 {
 	return latitude;
@@ -30,6 +41,11 @@ float Parada::get_latitude()
 float Parada::get_longitude()
 {
 	return longitude;
+}
+
+char Parada::get_terminal()
+{
+	return terminal;
 }
 
 Parada* Parada::get_prox()
@@ -54,6 +70,16 @@ void Parada::set_ID(int _ID)
 	ID = _ID;
 }
 
+void Parada::set_codigo(int _codigo)
+{
+	codigo = _codigo;
+}
+
+void Parada::set_nv(int _nv)
+{
+	nv = _nv;
+}
+
 void Parada::set_latitude(float _latitude)
 {
 	latitude = _latitude;
@@ -62,6 +88,11 @@ void Parada::set_latitude(float _latitude)
 void Parada::set_longitude(float _longitude)
 {
 	longitude = _longitude;
+}
+
+void Parada::set_terminal(char _terminal)
+{
+	terminal = _terminal;
 }
 
 void Parada::set_prox(Parada* p)
@@ -77,4 +108,5 @@ void Parada::RegistraVeiculoNaParada(Veiculo *v)
 		i++;
 	}
 	listaVeiculosQuePassamPorAqui[i] = v;
+	nv++;
 }
