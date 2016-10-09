@@ -2,16 +2,16 @@
 
 EstacaoDeBike::EstacaoDeBike()
 {
-	ID = 0;
+	numero = 0;
 	nome = "NULL";
 	latitude = 0;
 	longitude = 0;
 	prox = NULL;
 }
 
-int EstacaoDeBike::get_ID()
+int EstacaoDeBike::get_numero()
 {
-	return ID;
+	return numero;
 }
 
 string EstacaoDeBike::get_nome()
@@ -34,9 +34,9 @@ EstacaoDeBike* EstacaoDeBike::get_prox()
 	return prox;
 }
 
-void EstacaoDeBike::set_ID(int _ID)
+void EstacaoDeBike::set_numero(int _numero)
 {
-	ID = _ID;
+	numero = _numero;
 }
 
 void EstacaoDeBike::set_nome(string _nome)

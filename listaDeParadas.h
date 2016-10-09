@@ -21,5 +21,6 @@ class listaDeParadas
 		void carregaParadas(const char *_fileName); //Usa o arquivo para armazenar as paradas em um vetor
 		void vinculaVeiculos(const char *_fileName, listaDeVeiculos lst); //Usa o arquivo para vincular os veículos às paradas
 		void imprimeUsoDasParadas(); //Exibe paradas ordenadas de acordo com a quantidade de veículos que passam por elas
+		Parada* get_locais();
 };
 #endif

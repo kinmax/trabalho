@@ -44,7 +44,7 @@ void listaDeParadas::carregaParadas(const char *_fileName)
 			y << ".";
 			line.erase(0, pos+1);
 			pos = line.find(";");
-			y << line.substr(0, 8);
+			y << line.substr(0, 6);
 			y >> longitude;
 			line.erase(0, pos+1);
 			pos = line.find(",");
@@ -52,7 +52,7 @@ void listaDeParadas::carregaParadas(const char *_fileName)
 			z << ".";
 			line.erase(0, pos+1);
 			pos = line.find(";");
-			z << line.substr(0, 8);
+			z << line.substr(0, 6);
 			z >> latitude;
 			line.erase(0, pos+1);
 			pos = line.find("\n");
@@ -88,6 +88,10 @@ void listaDeParadas::carregaParadas(const char *_fileName)
 			}
 		}
 	}
+	aux = NULL; 
+	no = NULL;
+	delete(aux);
+	delete(no);
 }
 
 void listaDeParadas::vinculaVeiculos(const char *_fileName, listaDeVeiculos lst)
@@ -139,6 +143,10 @@ void listaDeParadas::vinculaVeiculos(const char *_fileName, listaDeVeiculos lst)
 			
 		}
 	}
+	aux = NULL; 
+	no = NULL;
+	delete(aux);
+	delete(no);
 }
 
 void listaDeParadas::imprimeUsoDasParadas()
@@ -155,7 +163,7 @@ void listaDeParadas::imprimeUsoDasParadas()
 	{
 		for(j = i+1; j < 5675; j++)
 		{
-			if(pvet[i]->get_nv() > pvet[j]->get_nv())
+			if(pvet[i]->get_nv() < pvet[j]->get_nv())
 			{
 				aux = pvet[i];
 				pvet[i] = pvet[j];
@@ -173,4 +181,16 @@ void listaDeParadas::imprimeUsoDasParadas()
 		cout << "Terminal: " << pvet[i]->get_terminal() << endl;
 		cout << "==================================================================" << endl;
 	}
+	for(i = 0; i < 5675; i++)
+	{
+		pvet[i] = NULL;
+		delete(pvet[i]);
+	}
+	aux = NULL;
+	delete(aux);
+}
+
+Parada* listaDeParadas::get_locais()
+{
+	return locais;
 }

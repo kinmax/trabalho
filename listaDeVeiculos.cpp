@@ -69,6 +69,9 @@ void listaDeVeiculos::carregaVeiculos(const char *_fileName)
 			
 		}
 	}
+	aux = no = NULL;
+	delete(aux);
+	delete(no);
 		
 }
 
@@ -92,6 +95,8 @@ void listaDeVeiculos::ListaLinhasDeOnibus()
 		}
 		cout << "========================================================" << endl;
 	}
+	aux = NULL;
+	delete(aux);
 	
 }
 
