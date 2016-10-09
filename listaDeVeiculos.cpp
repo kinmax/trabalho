@@ -23,48 +23,58 @@ void listaDeVeiculos::carregaVeiculos(const char *_fileName)
 		getline(linhafile, line); //Pular a primeira linha (cabeçalho)
 		while(!linhafile.eof())
 		{
-			/*Leitura do arquivo linhas.csv e atribuição das variáveis*/
-			getline(linhafile, line);
-			pos = line.find(";");
-			ident = line.substr(0, pos);
-			x << ident;
-			x >> id;
-			line.erase(0, pos+1);
-			pos = line.find(";");
-			nome = line.substr(0, pos);
-			line.erase(0, pos+1);
-			pos = line.find(";");
-			linha = line.substr(0, pos);
-			line.erase(0, pos+1);
-			pos = line.find("\n");
-			type = line.substr(0, pos);
-			y << type;
-			y >> tipo;
-			line.erase(0, pos+1);
+			getline(linhafile, line);			
+			if(!linhafile.eof())
+			{					
+				x.str("");
+				y.str("");
+				z.str("");
+				w.str("");
+				pos = line.find(";");
+				ident = line.substr(0, pos);
+				x << ident;
+				x >> id;
+				line.erase(0, pos+1);
+				pos = line.find(";");
+				nome = line.substr(0, pos);
+				line.erase(0, pos+1);
+				pos = line.find(";");
+				linha = line.substr(0, pos);
+				line.erase(0, pos+1);
+				type = line.substr(1, 1);
+				y << type;
+				y >> tipo;
+			
+				cout << ident << endl;
+				cout << nome << endl;
+				cout << linha << endl;
+				cout << tipo << endl;
+				cout << endl << endl;
 
-			/*Criação do veículo, definição dos atributos e inserção na lista*/			
-			if (transporte == NULL)
-			{
-				transporte = new Veiculo();
-				transporte->set_ID(id);
-				transporte->set_nome(nome);
-				transporte->set_linha(linha);
-				transporte->set_tipo(tipo);
-			}
-			else
-			{
-				aux = new Veiculo();
-				aux->set_ID(id);
-				aux->set_nome(nome);
-				aux->set_linha(linha);
-				aux->set_tipo(tipo);
-				no = transporte;
-				while(no->get_prox() != NULL)
+				/*Criação do veículo, definição dos atributos e inserção na lista*/			
+				if (transporte == NULL)
 				{
-					no = no->get_prox();
+					transporte = new Veiculo();
+					transporte->set_ID(id);
+					transporte->set_nome(nome);
+					transporte->set_linha(linha);
+					transporte->set_tipo(tipo);
 				}
-				no->set_prox(aux);
-				
+				else
+				{
+					aux = new Veiculo();
+					aux->set_ID(id);
+					aux->set_nome(nome);
+					aux->set_linha(linha);
+					aux->set_tipo(tipo);
+					no = new Veiculo();
+					no = transporte;
+					while(no->get_prox() != NULL)
+					{
+						no = no->get_prox();
+					}
+					no->set_prox(aux);
+				}
 			}
 			
 		}

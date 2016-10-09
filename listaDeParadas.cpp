@@ -44,7 +44,7 @@ void listaDeParadas::carregaParadas(const char *_fileName)
 			y << ".";
 			line.erase(0, pos+1);
 			pos = line.find(";");
-			y << line.substr(0, 6);
+			y << line.substr(0, 8);
 			y >> longitude;
 			line.erase(0, pos+1);
 			pos = line.find(",");
@@ -52,14 +52,16 @@ void listaDeParadas::carregaParadas(const char *_fileName)
 			z << ".";
 			line.erase(0, pos+1);
 			pos = line.find(";");
-			z << line.substr(0, 6);
+			z << line.substr(0, 8);
 			z >> latitude;
 			line.erase(0, pos+1);
 			pos = line.find("\n");
 			term = line.substr(0, pos);
 			w << term;
 			w >> terminal;
-			line.erase(0, pos+1);		
+			line.erase(0, pos+1);
+
+			//cout << z << endl;		
 
 			/*Criação da parada, definição dos atributos e inserção na lista*/
 			if (locais == NULL)
@@ -103,6 +105,8 @@ void listaDeParadas::vinculaVeiculos(const char *_fileName, listaDeVeiculos lst)
 	int idl, idp, pos;
 	Veiculo *aux;
 	Parada *no;
+	//aux = new Veiculo();
+	//no = new Parada();
 	aux = lst.get_transporte();
 	no = locais;
 	if (!file.is_open())
@@ -116,35 +120,42 @@ void listaDeParadas::vinculaVeiculos(const char *_fileName, listaDeVeiculos lst)
 		{
 			/*Leitura do arquivo paradalinha.csv e atribuição das variáveis*/
 			getline(file, line);
-			pos = line.find(";");
-			idlinha = line.substr(0, pos);
-			line.erase(0, pos+1);
-			pos = line.find("\n");
-			idparada = line.substr(0, pos);
-			line.erase(0, pos+1);
-			x << idlinha;
-			x >> idl;
-			y << idparada;
-			y >> idp;
+			if(!file.eof())
+			{	
+				pos = line.find(";");
+				idlinha = line.substr(0, pos);
+				line.erase(0, pos+1);
+				pos = line.find("\n");
+				idparada = line.substr(0, pos);
+				line.erase(0, pos+1);
+				x << idlinha;
+				x >> idl;
+				y << idparada;
+				y >> idp;
+
+				//cout << idl << endl;
+				//cout << idp << endl;
 
 			
-			aux = lst.get_transporte();
-			no = locais;				
-			while(aux->get_ID() != idl)
-			{
-				aux = aux->get_prox();
+				aux = lst.get_transporte();
+				no = locais;				
+				while(aux->get_ID() != idl && aux->get_prox() != NULL)
+				{
+					//cout << idl << endl;
+					aux = aux->get_prox();
+					
+				}
+				while (no->get_ID() != idp && no->get_prox() != NULL)
+				{
+					cout << idl << endl;					
+					no = no->get_prox();
+				}
+				aux->RegistraParadaNoVeiculo(no);
+				no->RegistraVeiculoNaParada(aux);
 			}
-			while (no->get_ID() != idp)
-			{
-				no = no->get_prox();
-			}
-			aux->RegistraParadaNoVeiculo(no);
-			no->RegistraVeiculoNaParada(aux);
-			
 		}
 	}
-	aux = NULL; 
-	no = NULL;
+
 	delete(aux);
 	delete(no);
 }

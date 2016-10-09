@@ -102,11 +102,14 @@ void Parada::set_prox(Parada* p)
 
 void Parada::RegistraVeiculoNaParada(Veiculo *v)
 {
-	int i;
-	while (listaVeiculosQuePassamPorAqui[i] != NULL)
+	int i = 0;
+	while (listaVeiculosQuePassamPorAqui[i] != NULL && i < 99)
 	{
 		i++;
 	}
-	listaVeiculosQuePassamPorAqui[i] = v;
-	nv++;
+	if(i < 100)
+	{
+		listaVeiculosQuePassamPorAqui[i] = v;
+		nv++;
+	}
 }
