@@ -81,13 +81,18 @@ void listaDeVeiculos::carregaVeiculos(const char *_fileName)
 			
 		}
 	}
-	ult = aux;
+	ult = new Veiculo();
+	ult->set_ID(aux->get_ID());
+	ult->set_nome(aux->get_nome());
+	ult->set_linha(aux->get_linha());
+	ult->set_tipo(aux->get_tipo());
+	no->set_prox(ult);
 	//cout << aux->get_ID() << endl;	
 	//cout << aux->get_linha() << endl;
 	//cout << aux->get_nome() << endl;
 	//cout << aux->get_tipo() << endl;
 	linhafile.close();
-	//aux = no = NULL;
+	aux = no = NULL;
 	//delete(aux);
 	//delete(no);
 		
@@ -113,8 +118,6 @@ void listaDeVeiculos::ListaLinhasDeOnibus()
 		cout << "========================================================" << endl;
 		aux = aux->get_prox();
 	}
-	ult = new Veiculo;
-	ult = aux;
 	cout << "ID da Linha: " << ult->get_ID() << endl;
 	cout << "Código da Linha: " << ult->get_linha() << endl;
 	cout << "Nome da Linha: " << ult->get_nome() << endl;
@@ -126,6 +129,7 @@ void listaDeVeiculos::ListaLinhasDeOnibus()
 	{
 		cout << "Tipo de Veículo: Lotação" << endl;
 	}
+	aux = NULL;
 	//delete(aux);
 	
 }
@@ -134,6 +138,7 @@ void listaDeVeiculos::ListaParadasDaLinha(string _linha)
 {
 	int i, n = 0;
 	Veiculo *aux;
+	ofstream outfile("lista_paradas_da_linha.txt");
 	aux = transporte;
 	while(aux->get_linha() != _linha && aux->get_prox() != NULL)
 	{
@@ -148,13 +153,20 @@ void listaDeVeiculos::ListaParadasDaLinha(string _linha)
 	}
 	for(i = 0; i < n; i++)
 	{
-		cout << "ID da Parada: " << aux->listaParadasPorOndePassa[i]->get_ID() << endl;
-		cout << "Código da Parada: " << aux->listaParadasPorOndePassa[i]->get_codigo() << endl;
-		cout << "Latitude da Parada: " << aux->listaParadasPorOndePassa[i]->get_latitude() << endl;
-		cout << "Longitude da Parada: " << aux->listaParadasPorOndePassa[i]->get_longitude() << endl;
-		cout << "Terminal(S/N): " << aux->listaParadasPorOndePassa[i]->get_terminal() << endl;
-		cout << "================================================" << endl;  
-	}	
+		//cout << "ID da Parada: " << aux->listaParadasPorOndePassa[i]->get_ID() << endl;
+		//cout << "Código da Parada: " << aux->listaParadasPorOndePassa[i]->get_codigo() << endl;
+		//cout << "Latitude da Parada: " << aux->listaParadasPorOndePassa[i]->get_latitude() << endl;
+		//cout << "Longitude da Parada: " << aux->listaParadasPorOndePassa[i]->get_longitude() << endl;
+		//cout << "Terminal(S/N): " << aux->listaParadasPorOndePassa[i]->get_terminal() << endl;
+		//cout << "================================================" << endl;
+		outfile << "ID da Parada: " << aux->listaParadasPorOndePassa[i]->get_ID() << endl;
+		outfile << "Código da Parada: " << aux->listaParadasPorOndePassa[i]->get_codigo() << endl;
+		outfile << "Latitude da Parada: " << aux->listaParadasPorOndePassa[i]->get_latitude() << endl;
+		outfile << "Longitude da Parada: " << aux->listaParadasPorOndePassa[i]->get_longitude() << endl;
+		outfile << "Terminal(S/N): " << aux->listaParadasPorOndePassa[i]->get_terminal() << endl;
+		outfile << "================================================" << endl;  
+	}
+	aux = NULL;	
 }
 
 Veiculo* listaDeVeiculos::get_transporte()

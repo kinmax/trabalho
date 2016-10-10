@@ -1,0 +1,138 @@
+ID da Parada: 311
+Código da Parada: 4942
+Latitude da Parada: -30.1671
+Longitude da Parada: -51.1545
+Terminal(S/N): N
+================================================
+ID da Parada: 313
+Código da Parada: 13913
+Latitude da Parada: -30.1653
+Longitude da Parada: -51.1542
+Terminal(S/N): N
+================================================
+ID da Parada: 316
+Código da Parada: 13909
+Latitude da Parada: -30.1644
+Longitude da Parada: -51.1523
+Terminal(S/N): N
+================================================
+ID da Parada: 347
+Código da Parada: 12771
+Latitude da Parada: -30.1844
+Longitude da Parada: -51.1389
+Terminal(S/N): N
+================================================
+ID da Parada: 352
+Código da Parada: 15982
+Latitude da Parada: -30.1868
+Longitude da Parada: -51.137
+Terminal(S/N): N
+================================================
+ID da Parada: 374
+Código da Parada: 4967
+Latitude da Parada: -30.193
+Longitude da Parada: -51.1309
+Terminal(S/N): N
+================================================
+ID da Parada: 377
+Código da Parada: 16244
+Latitude da Parada: -30.1902
+Longitude da Parada: -51.1329
+Terminal(S/N): N
+================================================
+ID da Parada: 378
+Código da Parada: 12621
+Latitude da Parada: -30.1944
+Longitude da Parada: -51.13
+Terminal(S/N): N
+================================================
+ID da Parada: 381
+Código da Parada: 12380
+Latitude da Parada: -30.1965
+Longitude da Parada: -51.1282
+Terminal(S/N): N
+================================================
+ID da Parada: 382
+Código da Parada: 13741
+Latitude da Parada: -30.1723
+Longitude da Parada: -51.149
+Terminal(S/N): N
+================================================
+ID da Parada: 388
+Código da Parada: 17015
+Latitude da Parada: -30.1758
+Longitude da Parada: -51.1457
+Terminal(S/N): N
+================================================
+ID da Parada: 405
+Código da Parada: 13931
+Latitude da Parada: -30.1632
+Longitude da Parada: -51.1507
+Terminal(S/N): N
+================================================
+ID da Parada: 408
+Código da Parada: 13927
+Latitude da Parada: -30.1616
+Longitude da Parada: -51.1492
+Terminal(S/N): N
+================================================
+ID da Parada: 412
+Código da Parada: 13921
+Latitude da Parada: -30.159
+Longitude da Parada: -51.1469
+Terminal(S/N): N
+================================================
+ID da Parada: 419
+Código da Parada: 13924
+Latitude da Parada: -30.1575
+Longitude da Parada: -51.145
+Terminal(S/N): N
+================================================
+ID da Parada: 420
+Código da Parada: 13918
+Latitude da Parada: -30.1562
+Longitude da Parada: -51.1436
+Terminal(S/N): N
+================================================
+ID da Parada: 434
+Código da Parada: 17028
+Latitude da Parada: -30.1504
+Longitude da Parada: -51.1456
+Terminal(S/N): N
+================================================
+ID da Parada: 454
+Código da Parada: 17026
+Latitude da Parada: -30.1518
+Longitude da Parada: -51.1424
+Terminal(S/N): N
+================================================
+ID da Parada: 456
+Código da Parada: 11276
+Latitude da Parada: -30.1533
+Longitude da Parada: -51.1408
+Terminal(S/N): N
+================================================
+ID da Parada: 459
+Código da Parada: 10665
+Latitude da Parada: -30.155
+Longitude da Parada: -51.1402
+Terminal(S/N): N
+================================================
+ID da Parada: 5645
+Código da Parada: 9391
+Latitude da Parada: -30.1498
+Longitude da Parada: -51.147
+Terminal(S/N): N
+================================================
+ID da Parada: 5955
+Código da Parada: 12618
+Latitude da Parada: -30.1917
+Longitude da Parada: -51.1314
+Terminal(S/N): N
+================================================
+ID da Parada: 6167
+Código da Parada: 15768
+Latitude da Parada: -30.1706
+Longitude da Parada: -51.1509
+Terminal(S/N): N
+================================================

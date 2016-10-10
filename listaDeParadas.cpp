@@ -105,12 +105,12 @@ void listaDeParadas::carregaParadas(const char *_fileName)
 				}
 			}
 		}
-	}
+	}	
 	paradafile.close();
 	aux = NULL; 
 	no = NULL;
-	delete(aux);
-	delete(no);
+	//delete(aux);
+	//delete(no);
 }
 
 void listaDeParadas::vinculaVeiculos(const char *_fileName, listaDeVeiculos lst)
@@ -172,9 +172,10 @@ void listaDeParadas::vinculaVeiculos(const char *_fileName, listaDeVeiculos lst)
 		}
 		//cout << idl << endl;
 	}
-
-	delete(aux);
-	delete(no);
+	no = NULL;
+	aux = NULL;
+	//delete(aux);
+	//delete(no);
 	file.close();
 }
 
@@ -221,11 +222,11 @@ void listaDeParadas::imprimeUsoDasParadas()
 	for(i = 0; i < 5675; i++)
 	{
 		pvet[i] = NULL;
-		delete(pvet[i]);
+		//delete(pvet[i]);
 	}
 	aux = no = NULL;
-	delete(aux);
-	delete(no);
+	//delete(aux);
+	//delete(no);
 }
 
 Parada* listaDeParadas::get_locais()
