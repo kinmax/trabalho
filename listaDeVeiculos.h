@@ -17,5 +17,6 @@ class listaDeVeiculos
 		void ListaLinhasDeOnibus(); //Exibe o vetor de veículos
 		void ListaParadasDaLinha(string _linha); //Exibe as paradas de uma linha específica, na ordem em que o veículo passa por elas
 		Veiculo* get_transporte();
+		Veiculo* get_ult();
 };
 #endif

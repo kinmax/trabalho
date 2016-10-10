@@ -89,6 +89,7 @@ void listaDeParadas::carregaParadas(const char *_fileName)
 				}
 				else
 				{
+					no = new Parada();					
 					no = locais;
 					aux = new Parada();
 					aux->set_ID(ID);

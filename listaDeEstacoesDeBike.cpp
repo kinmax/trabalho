@@ -24,65 +24,70 @@ void listaDeEstacoesDeBike::carregaEstacoes(const char *_fileName)
 		while(!file.eof())
 		{
 			getline(file, line);
-			pos = line.find(";");
-			number = line.substr(0, pos);
-			nro = atoi(number.c_str());
-			line.erase(0, pos+1);
-			pos = line.find(";");
-			name = line.substr(0, pos);
-			
-			line.erase(0, pos+1);
-			pos = line.find(",");
-		    latitude = line.substr(0, pos);
-			y = latitude;
-			y = y + '.';
-			line.erase(0, pos+1);
-			pos = line.find(";");
-			latitude =  line.substr(0, 6);
-			y = y + latitude;
-			lat = atof(y.c_str());
-			cout << lat << endl;
-			
-			line.erase(0, pos+1);
-			pos = line.find(",");
-			longitude = line.substr(0, pos);
-			z = longitude;
-			z = z + '.';
-			line.erase(0, pos+1);
-			pos = line.find(";");
-			longitude = line.substr(0, 6);
-			z = z + longitude;
-			lon = atof(z.c_str());
-			cout << lon << endl;
-			
-			if(locais == NULL)
+			if(!file.eof())
 			{
-				locais = new EstacaoDeBike();
-				locais->set_numero(nro);
-				locais->set_nome(name);
-				locais->set_latitude(lat);
-				locais->set_longitude(lon);
-			}
-			else
-			{
-				aux = new EstacaoDeBike();
-				aux->set_numero(nro);
-				aux->set_nome(name);
-				aux->set_latitude(lat);
-				aux->set_longitude(lon);
-				no = locais;
-				while (no->get_prox() != NULL)
+				pos = line.find(";");
+				number = line.substr(0, pos);
+				nro = atoi(number.c_str());
+				line.erase(0, pos+1);
+				pos = line.find(";");
+				name = line.substr(0, pos);
+			
+				line.erase(0, pos+1);
+				pos = line.find(",");
+				latitude = line.substr(0, pos);
+				y = latitude;
+				y = y + '.';
+				line.erase(0, pos+1);
+				pos = line.find(";");
+				latitude =  line.substr(0, 6);
+				y = y + latitude;
+				lat = atof(y.c_str());
+				cout << lat << endl;
+			
+				line.erase(0, pos+1);
+				pos = line.find(",");
+				longitude = line.substr(0, pos);
+				z = longitude;
+				z = z + '.';
+				line.erase(0, pos+1);
+				pos = line.find(";");
+				longitude = line.substr(0, 6);
+				z = z + longitude;
+				lon = atof(z.c_str());
+				cout << lon << endl;
+			
+				if(locais == NULL)
 				{
-					no = no->get_prox();
+					locais = new EstacaoDeBike();
+					locais->set_numero(nro);
+					locais->set_nome(name);
+					locais->set_latitude(lat);
+					locais->set_longitude(lon);
 				}
-				no->set_prox(aux);
+				else
+				{
+					aux = new EstacaoDeBike();
+					aux->set_numero(nro);
+					aux->set_nome(name);
+					aux->set_latitude(lat);
+					aux->set_longitude(lon);
+					no = new EstacaoDeBike();				
+					no = locais;
+					while (no->get_prox() != NULL)
+					{
+						no = no->get_prox();
+					}
+					no->set_prox(new EstacaoDeBike());
+					no->set_prox(aux);
+				}
 			}	
 		}
 	}
-	aux = NULL; 
-	no = NULL;
-	delete(aux);
-	delete(no);
+	//aux = NULL; 
+	//no = NULL;
+	//delete(aux);
+	//delete(no);
 	file.close();
 }
 
@@ -142,7 +147,7 @@ void listaDeEstacoesDeBike::ListaEstacoesDeBike()
 {
 	EstacaoDeBike *aux;
 	aux = locais;
-	while(aux->get_prox() != NULL)
+	while(aux != NULL)
 	{
 		cout << "Número da Estação: " << aux->get_numero() << endl;
 		cout << "Nome da Estação: " << aux->get_nome() << endl;

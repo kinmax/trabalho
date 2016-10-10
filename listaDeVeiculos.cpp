@@ -4,6 +4,7 @@ using namespace std;
 listaDeVeiculos::listaDeVeiculos()
 {
 	transporte = NULL;
+	ult = NULL;
 }
 
 void listaDeVeiculos::carregaVeiculos(const char *_fileName)
@@ -31,12 +32,15 @@ void listaDeVeiculos::carregaVeiculos(const char *_fileName)
 				pos = line.find(";");
 				ident = line.substr(0, pos);
 				id = stoi(ident);
+	
 				line.erase(0, pos+1);
 				pos = line.find(";");
 				nome = line.substr(0, pos);
+				
 				line.erase(0, pos+1);
 				pos = line.find(";");
 				linha = line.substr(0, pos);
+				
 				line.erase(0, pos+1);
 				type = line.substr(1, 1);
 				y << type;
@@ -83,7 +87,7 @@ void listaDeVeiculos::carregaVeiculos(const char *_fileName)
 	//cout << aux->get_nome() << endl;
 	//cout << aux->get_tipo() << endl;
 	linhafile.close();
-	aux = no = NULL;
+	//aux = no = NULL;
 	//delete(aux);
 	//delete(no);
 		
@@ -109,6 +113,8 @@ void listaDeVeiculos::ListaLinhasDeOnibus()
 		cout << "========================================================" << endl;
 		aux = aux->get_prox();
 	}
+	ult = new Veiculo;
+	ult = aux;
 	cout << "ID da Linha: " << ult->get_ID() << endl;
 	cout << "Código da Linha: " << ult->get_linha() << endl;
 	cout << "Nome da Linha: " << ult->get_nome() << endl;
@@ -154,4 +160,9 @@ void listaDeVeiculos::ListaParadasDaLinha(string _linha)
 Veiculo* listaDeVeiculos::get_transporte()
 {
 	return transporte;
+}
+
+Veiculo* listaDeVeiculos::get_ult()
+{
+	return ult;
 }
