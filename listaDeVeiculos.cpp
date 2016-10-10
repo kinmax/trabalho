@@ -102,34 +102,36 @@ void listaDeVeiculos::ListaLinhasDeOnibus()
 {
 	Veiculo *aux;
 	aux = transporte;
+	ofstream outfile("lista_linhas_de_onibus.txt");
 	while(aux->get_prox() != NULL)
 	{
-		cout << "ID da Linha: " << aux->get_ID() << endl;
-		cout << "Código da Linha: " << aux->get_linha() << endl;
-		cout << "Nome da Linha: " << aux->get_nome() << endl;
+		outfile << "ID da Linha: " << aux->get_ID() << endl;
+		outfile << "Código da Linha: " << aux->get_linha() << endl;
+		outfile << "Nome da Linha: " << aux->get_nome() << endl;
 		if(aux->get_tipo() == 'O')
 		{
-			cout << "Tipo de Veículo: Ônibus" << endl;
+			outfile << "Tipo de Veículo: Ônibus" << endl;
 		}
 		else
 		{
-			cout << "Tipo de Veículo: Lotação" << endl;
+			outfile << "Tipo de Veículo: Lotação" << endl;
 		}
-		cout << "========================================================" << endl;
+		outfile << "========================================================" << endl;
 		aux = aux->get_prox();
 	}
-	cout << "ID da Linha: " << ult->get_ID() << endl;
-	cout << "Código da Linha: " << ult->get_linha() << endl;
-	cout << "Nome da Linha: " << ult->get_nome() << endl;
+	outfile << "ID da Linha: " << ult->get_ID() << endl;
+	outfile << "Código da Linha: " << ult->get_linha() << endl;
+	outfile << "Nome da Linha: " << ult->get_nome() << endl;
 	if(ult->get_tipo() == 'O')
 	{
-		cout << "Tipo de Veículo: Ônibus" << endl;
+		outfile << "Tipo de Veículo: Ônibus" << endl;
 	}
 	else
 	{
-		cout << "Tipo de Veículo: Lotação" << endl;
+		outfile << "Tipo de Veículo: Lotação" << endl;
 	}
 	aux = NULL;
+	outfile.close();
 	//delete(aux);
 	
 }
@@ -166,7 +168,8 @@ void listaDeVeiculos::ListaParadasDaLinha(string _linha)
 		outfile << "Terminal(S/N): " << aux->listaParadasPorOndePassa[i]->get_terminal() << endl;
 		outfile << "================================================" << endl;  
 	}
-	aux = NULL;	
+	aux = NULL;
+	outfile.close();	
 }
 
 Veiculo* listaDeVeiculos::get_transporte()

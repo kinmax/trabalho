@@ -184,6 +184,7 @@ void listaDeParadas::imprimeUsoDasParadas()
 	Parada *pvet[5675], *aux, *no;
 	aux = new Parada();
 	no = new Parada();
+	ofstream outfile("uso_paradas.txt");
 	int i = 0, j;
 	for (i = 0; i < 5675; i++)
 	{
@@ -212,12 +213,12 @@ void listaDeParadas::imprimeUsoDasParadas()
 	}
 	for (i = 0; i < 5675; i++)
 	{
-		cout << "ID da Parada: " << pvet[i]->get_ID() << endl;
-		cout << "Código da Parada: " << pvet[i]->get_codigo() << endl;
-		cout << "Longitude da Parada: " << pvet[i]->get_longitude() << endl;
-		cout << "Latitude da Parada: " << pvet[i]->get_latitude() << endl;
-		cout << "Terminal: " << pvet[i]->get_terminal() << endl;
-		cout << "==================================================================" << endl;
+		outfile << "ID da Parada: " << pvet[i]->get_ID() << endl;
+		outfile << "Código da Parada: " << pvet[i]->get_codigo() << endl;
+		outfile << "Longitude da Parada: " << pvet[i]->get_longitude() << endl;
+		outfile << "Latitude da Parada: " << pvet[i]->get_latitude() << endl;
+		outfile << "Terminal: " << pvet[i]->get_terminal() << endl;
+		outfile << "==================================================================" << endl;
 	}
 	for(i = 0; i < 5675; i++)
 	{
@@ -225,6 +226,7 @@ void listaDeParadas::imprimeUsoDasParadas()
 		//delete(pvet[i]);
 	}
 	aux = no = NULL;
+	outfile.close();
 	//delete(aux);
 	//delete(no);
 }

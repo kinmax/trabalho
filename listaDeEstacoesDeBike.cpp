@@ -95,7 +95,9 @@ void listaDeEstacoesDeBike::ListaParadasProximasDaEstacao(string estacao, listaD
 {
 	EstacaoDeBike *aux;
 	Parada *prim, *no, *closest;
+	ofstream outfile("parada_proxima.txt");
 	aux = locais;
+	int i = 0, n = 0;
 	double late, longe, latp, longp, menor = 1000000000000.0, laterad, longerad, latprad, longprad, deltlat, deltlong, a, c, d;
 	while(aux->get_nome() != estacao)
 	{
@@ -111,6 +113,7 @@ void listaDeEstacoesDeBike::ListaParadasProximasDaEstacao(string estacao, listaD
 	longerad = longe*(0.01745);
 	prim = lst.get_locais();
 	no = prim;
+	
 	//cout << no->get_latitude() << endl;
 	//cout << no->get_longitude() << endl;
 	while (no != NULL)
@@ -132,12 +135,12 @@ void listaDeEstacoesDeBike::ListaParadasProximasDaEstacao(string estacao, listaD
 		//cout << deltlong << endl;
 		cout << fixed;
 		cout << setprecision(9) << showpoint;
-		cout << sin(deltlat/2)*sin(deltlat/2) << endl;
+		//cout << sin(deltlat/2)*sin(deltlat/2) << endl;
 		
 		a = (pow((sin(deltlat/2.0)), 2.0) + cos(laterad)) * cos(latprad) * pow((sin(deltlong/2.0)), 2.0);
 		c = 2.0 * (1.0/tan((sqrt(a))/sqrt(1.0-a)));
 		d = 6731.0 * c;
-		cout << d << endl;
+		//cout << d << endl;
 
 		if (d < menor)
 		{
@@ -150,16 +153,35 @@ void listaDeEstacoesDeBike::ListaParadasProximasDaEstacao(string estacao, listaD
 	}
 	//cout << no->get_latitude() << endl;
 	//cout << no->get_longitude() << endl;
-	cout << "Parada Mais Próxima" << endl;
-	cout << "ID da Parada: " << closest->get_ID() << endl;
-	cout << "Código da Parada: " << closest->get_codigo() << endl;
-	cout << "Latitude da Parada: " << closest->get_latitude() << endl;
-	cout << "Longitude da Parada: " << closest->get_longitude() << endl;
+	outfile << "Parada Mais Próxima" << endl;
+	outfile << "ID da Parada: " << closest->get_ID() << endl;
+	outfile << "Código da Parada: " << closest->get_codigo() << endl;
+	outfile << "Latitude da Parada: " << closest->get_latitude() << endl;
+	outfile << "Longitude da Parada: " << closest->get_longitude() << endl;
+	
+	outfile << endl << endl;
+	outfile << "Linhas que passam por esta parada: " << endl;
+	for (i = 0; i < 100; i++)
+	{
+		if (closest->listaVeiculosQuePassamPorAqui[i] != NULL)
+		{
+			n++;
+		}
+	}
+	for(i = 0; i < n; i++)
+	{
+		outfile << "ID da Linha: " << closest->listaVeiculosQuePassamPorAqui[i]->get_ID() << endl;
+		outfile << "Código da Linha: " << closest->listaVeiculosQuePassamPorAqui[i]->get_linha() << endl;
+		outfile << "Nome da Linha: " << closest->listaVeiculosQuePassamPorAqui[i]->get_nome() << endl;
+		outfile << "Tipo de Veículo: " << closest->listaVeiculosQuePassamPorAqui[i]->get_tipo() << endl;
+		outfile << "===========================================================================" << endl;
+	}
 	
 	closest = NULL; 
 	aux = NULL;
 	no = NULL;
 	prim = NULL;
+	outfile.close();
 	//delete(closest);
 	//delete(aux);
 	//delete(no);
@@ -170,15 +192,17 @@ void listaDeEstacoesDeBike::ListaEstacoesDeBike()
 {
 	EstacaoDeBike *aux;
 	aux = locais;
+	ofstream outfile("lista_estacoes_de_bike.txt");
 	while(aux != NULL)
 	{
-		cout << "Número da Estação: " << aux->get_numero() << endl;
-		cout << "Nome da Estação: " << aux->get_nome() << endl;
-		cout << "Latitude da Estação: " << aux->get_latitude() << endl;
-		cout << "Longitude da Estação: " << aux->get_longitude() << endl;
-		cout << "=========================================================" << endl;
+		outfile << "Número da Estação: " << aux->get_numero() << endl;
+		outfile << "Nome da Estação: " << aux->get_nome() << endl;
+		outfile << "Latitude da Estação: " << aux->get_latitude() << endl;
+		outfile << "Longitude da Estação: " << aux->get_longitude() << endl;
+		outfile << "=========================================================" << endl;
 		aux = aux->get_prox();
 	}
+	outfile.close();
 	aux = NULL;
 	//delete(aux);
 }
