@@ -1,6 +1,9 @@
 #include "listaDeParadas.h"
 #include "Parada.h"
 #include "Veiculo.h"
+#include <stdlib.h>
+#include <cstdlib>
+using namespace std;
 listaDeParadas::listaDeParadas()
 {
 	locais = NULL;
@@ -15,9 +18,10 @@ void listaDeParadas::carregaParadas(const char *_fileName)
 	string line;
 	string ident, code, lat, lon, term;
 	int pos, ID, codego;
-	float latitude, longitude;
+	double latitudei, longitudei, latituded, longituded, latitude, longitude;
 	char terminal;
-	stringstream x, y, z, w;
+	string x, y, z; 
+	stringstream w;
 	if (!paradafile.is_open())
 	{
 		cout << "O arquivo paradas.csv não pôde ser aberto" << endl;
@@ -29,67 +33,79 @@ void listaDeParadas::carregaParadas(const char *_fileName)
 		{
 			/*leitura do arquivo paradas.csv e atribuição das variáveis*/			
 			getline(paradafile, line);
-			pos = line.find(";");
-			ident = line.substr(0, pos);
-			x << ident;
-			x >> ID;
-			line.erase(0, pos+1);
-			pos = line.find(";");
-			code = line.substr(0, pos);
-			w << code;
-			w >> codego;	
-			line.erase(0, pos+1);
-			pos = line.find(",");
-			y << line.substr(0, pos);
-			y << ".";
-			line.erase(0, pos+1);
-			pos = line.find(";");
-			y << line.substr(0, 8);
-			y >> longitude;
-			line.erase(0, pos+1);
-			pos = line.find(",");
-			z << line.substr(0, pos);
-			z << ".";
-			line.erase(0, pos+1);
-			pos = line.find(";");
-			z << line.substr(0, 8);
-			z >> latitude;
-			line.erase(0, pos+1);
-			pos = line.find("\n");
-			term = line.substr(0, pos);
-			w << term;
-			w >> terminal;
-			line.erase(0, pos+1);
+			if(!paradafile.eof())
+			{	
+							
+				pos = line.find(";");
+				ident = line.substr(0, pos);
+				ID = atoi(ident.c_str());
+				line.erase(0, pos+2);
+				pos = line.find(";");
+				code = line.substr(0, pos-1);
+				codego = atoi(code.c_str());
+	
+				line.erase(0, pos+1);
+				pos = line.find(",");
+				lon = line.substr(0, pos);
+				y = lon;
+				y = y + '.';
+				line.erase(0, pos+1);
+				pos = line.find(";");
+				lon = line.substr(0, 8);				
+				y = y + lon;
+				longitude = atof(y.c_str());
+				//cout << longitude << endl;
 
-			//cout << z << endl;		
+				line.erase(0, pos+1);
+				pos = line.find(",");
+				lat = line.substr(0, pos);
+				z = lat;				
+				z = z + '.';
+				line.erase(0, pos+1);
+				pos = line.find(";");
+				lat = line.substr(0, 8);
+				z = z + lat;
+				latitude = atof(z.c_str());
+				//cout << latitude << endl;
+				
+				line.erase(0, pos+1);
+				pos = line.find("\n");
+				term = line.substr(1, 1);
+				w << term;
+				w >> terminal;
+				line.erase(0, pos+1);
 
-			/*Criação da parada, definição dos atributos e inserção na lista*/
-			if (locais == NULL)
-			{
-				locais = new Parada();
-				locais->set_ID(ID);
-				locais->set_codigo(codego);
-				locais->set_longitude(longitude);
-				locais->set_latitude(latitude);
-				locais->set_terminal(terminal);
-			}
-			else
-			{
-				no = locais;
-				aux = new Parada();
-				aux->set_ID(ID);
-				aux->set_codigo(codego);
-				aux->set_longitude(longitude);
-				aux->set_latitude(latitude);
-				aux->set_terminal(terminal);
-				while(no->get_prox() != NULL)
+				//cout << z << endl;		
+
+				/*Criação da parada, definição dos atributos e inserção na lista*/
+				if (locais == NULL)
 				{
-					no = no->get_prox();
+					locais = new Parada();
+					locais->set_ID(ID);
+					locais->set_codigo(codego);
+					locais->set_longitude(longitude);
+					locais->set_latitude(latitude);
+					locais->set_terminal(terminal);
 				}
-				no->set_prox(aux);
+				else
+				{
+					no = locais;
+					aux = new Parada();
+					aux->set_ID(ID);
+					aux->set_codigo(codego);
+					aux->set_longitude(longitude);
+					aux->set_latitude(latitude);
+					aux->set_terminal(terminal);
+					while(no->get_prox() != NULL)
+					{
+						no = no->get_prox();
+					}
+					no->set_prox(aux);
+				}
 			}
 		}
 	}
+	paradafile.close();
 	aux = NULL; 
 	no = NULL;
 	delete(aux);
@@ -128,10 +144,8 @@ void listaDeParadas::vinculaVeiculos(const char *_fileName, listaDeVeiculos lst)
 				pos = line.find("\n");
 				idparada = line.substr(0, pos);
 				line.erase(0, pos+1);
-				x << idlinha;
-				x >> idl;
-				y << idparada;
-				y >> idp;
+				idl = atoi(idlinha.c_str());
+				idp = atoi(idparada.c_str());
 
 				//cout << idl << endl;
 				//cout << idp << endl;
@@ -147,28 +161,39 @@ void listaDeParadas::vinculaVeiculos(const char *_fileName, listaDeVeiculos lst)
 				}
 				while (no->get_ID() != idp && no->get_prox() != NULL)
 				{
-					cout << idl << endl;					
+					//cout << idl << endl;					
 					no = no->get_prox();
 				}
+				//cout << idl << endl;
 				aux->RegistraParadaNoVeiculo(no);
 				no->RegistraVeiculoNaParada(aux);
 			}
 		}
+		//cout << idl << endl;
 	}
 
 	delete(aux);
 	delete(no);
+	file.close();
 }
 
 void listaDeParadas::imprimeUsoDasParadas()
 {
-	Parada *pvet[5675], *aux;	
-	aux = locais;
+	Parada *pvet[5675], *aux, *no;
+	aux = new Parada();
+	no = new Parada();
 	int i = 0, j;
-	while(aux != NULL)
+	for (i = 0; i < 5675; i++)
+	{
+		pvet[i] = new Parada();
+	}	
+	aux = locais;
+	i = 0;
+	while(aux != NULL && i < 5675)
 	{
 		pvet[i] = aux;
 		i++;
+		aux = aux->get_prox();
 	}
 	for(i = 0; i < 5675; i++)
 	{
@@ -176,9 +201,9 @@ void listaDeParadas::imprimeUsoDasParadas()
 		{
 			if(pvet[i]->get_nv() < pvet[j]->get_nv())
 			{
-				aux = pvet[i];
+				no = pvet[i];
 				pvet[i] = pvet[j];
-				pvet[j] = aux;
+				pvet[j] = no;
 			}
 		}
 		
@@ -197,8 +222,9 @@ void listaDeParadas::imprimeUsoDasParadas()
 		pvet[i] = NULL;
 		delete(pvet[i]);
 	}
-	aux = NULL;
+	aux = no = NULL;
 	delete(aux);
+	delete(no);
 }
 
 Parada* listaDeParadas::get_locais()

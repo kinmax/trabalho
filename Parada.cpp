@@ -33,12 +33,12 @@ int Parada::get_nv()
 	return nv;
 }
 
-float Parada::get_latitude()
+double Parada::get_latitude()
 {
 	return latitude;
 }
 
-float Parada::get_longitude()
+double Parada::get_longitude()
 {
 	return longitude;
 }
@@ -80,12 +80,12 @@ void Parada::set_nv(int _nv)
 	nv = _nv;
 }
 
-void Parada::set_latitude(float _latitude)
+void Parada::set_latitude(double _latitude)
 {
 	latitude = _latitude;
 }
 
-void Parada::set_longitude(float _longitude)
+void Parada::set_longitude(double _longitude)
 {
 	longitude = _longitude;
 }

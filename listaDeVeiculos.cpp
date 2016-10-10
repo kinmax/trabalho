@@ -1,4 +1,5 @@
 #include "listaDeVeiculos.h"
+using namespace std;
 
 listaDeVeiculos::listaDeVeiculos()
 {
@@ -22,18 +23,14 @@ void listaDeVeiculos::carregaVeiculos(const char *_fileName)
 	{
 		getline(linhafile, line); //Pular a primeira linha (cabeçalho)
 		while(!linhafile.eof())
-		{
-			getline(linhafile, line);			
+		{	
+			getline(linhafile, line);		
 			if(!linhafile.eof())
 			{					
-				x.str("");
-				y.str("");
-				z.str("");
-				w.str("");
+				
 				pos = line.find(";");
 				ident = line.substr(0, pos);
-				x << ident;
-				x >> id;
+				id = stoi(ident);
 				line.erase(0, pos+1);
 				pos = line.find(";");
 				nome = line.substr(0, pos);
@@ -45,11 +42,11 @@ void listaDeVeiculos::carregaVeiculos(const char *_fileName)
 				y << type;
 				y >> tipo;
 			
-				cout << ident << endl;
-				cout << nome << endl;
-				cout << linha << endl;
-				cout << tipo << endl;
-				cout << endl << endl;
+				//cout << id << endl;
+				//cout << nome << endl;
+				//cout << linha << endl;
+				//cout << tipo << endl;
+				//cout << endl << endl;
 
 				/*Criação do veículo, definição dos atributos e inserção na lista*/			
 				if (transporte == NULL)
@@ -73,24 +70,30 @@ void listaDeVeiculos::carregaVeiculos(const char *_fileName)
 					{
 						no = no->get_prox();
 					}
+					no->set_prox(new Veiculo());
 					no->set_prox(aux);
 				}
 			}
 			
 		}
 	}
+	ult = aux;
+	//cout << aux->get_ID() << endl;	
+	//cout << aux->get_linha() << endl;
+	//cout << aux->get_nome() << endl;
+	//cout << aux->get_tipo() << endl;
+	linhafile.close();
 	aux = no = NULL;
-	delete(aux);
-	delete(no);
+	//delete(aux);
+	//delete(no);
 		
 }
 
 void listaDeVeiculos::ListaLinhasDeOnibus()
 {
 	Veiculo *aux;
-	aux = new Veiculo();
 	aux = transporte;
-	while(aux != NULL)
+	while(aux->get_prox() != NULL)
 	{
 		cout << "ID da Linha: " << aux->get_ID() << endl;
 		cout << "Código da Linha: " << aux->get_linha() << endl;
@@ -104,25 +107,47 @@ void listaDeVeiculos::ListaLinhasDeOnibus()
 			cout << "Tipo de Veículo: Lotação" << endl;
 		}
 		cout << "========================================================" << endl;
+		aux = aux->get_prox();
 	}
-	aux = NULL;
-	delete(aux);
+	cout << "ID da Linha: " << ult->get_ID() << endl;
+	cout << "Código da Linha: " << ult->get_linha() << endl;
+	cout << "Nome da Linha: " << ult->get_nome() << endl;
+	if(ult->get_tipo() == 'O')
+	{
+		cout << "Tipo de Veículo: Ônibus" << endl;
+	}
+	else
+	{
+		cout << "Tipo de Veículo: Lotação" << endl;
+	}
+	//delete(aux);
 	
 }
 
 void listaDeVeiculos::ListaParadasDaLinha(string _linha)
 {
 	int i, n = 0;
+	Veiculo *aux;
+	aux = transporte;
+	while(aux->get_linha() != _linha && aux->get_prox() != NULL)
+	{
+		aux = aux->get_prox();
+	}
 	for(i = 0; i < 100; i++)
 	{
-		if (transporte->listaParadasPorOndePassa[i] != NULL)
+		if (aux->listaParadasPorOndePassa[i] != NULL)
 		{
 			n++;
 		}
 	}
 	for(i = 0; i < n; i++)
 	{
-		cout << transporte->listaParadasPorOndePassa[i]->get_ID() << endl; 
+		cout << "ID da Parada: " << aux->listaParadasPorOndePassa[i]->get_ID() << endl;
+		cout << "Código da Parada: " << aux->listaParadasPorOndePassa[i]->get_codigo() << endl;
+		cout << "Latitude da Parada: " << aux->listaParadasPorOndePassa[i]->get_latitude() << endl;
+		cout << "Longitude da Parada: " << aux->listaParadasPorOndePassa[i]->get_longitude() << endl;
+		cout << "Terminal(S/N): " << aux->listaParadasPorOndePassa[i]->get_terminal() << endl;
+		cout << "================================================" << endl;  
 	}	
 }
 

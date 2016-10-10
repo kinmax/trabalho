@@ -10,7 +10,7 @@ using namespace std;
 class listaDeVeiculos
 {
 	private:	
-		Veiculo* transporte;
+		Veiculo* transporte, *ult;
 	public:
 		listaDeVeiculos(); //Construtor		
 		void carregaVeiculos(const char *_fileName); //Usa o arquivo para armazenar os veículos em um vetor
